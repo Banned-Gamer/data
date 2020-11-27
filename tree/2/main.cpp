@@ -1,13 +1,8 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<cstdlib>
-#include<queue>
-#include<cmath>
-using namespace std;
-
+#include "Global.h"
+#include "encode.h"
+#include "decode.h"
 int main()
 {
-	FILE* IN = fopen("in.txt", "rb");
-	FILE* OUT = fopen("out.txt", "wb");
+	IN = fopen("in.txt", "rb");
+	OUT = fopen("out.txt", "wb");
 }

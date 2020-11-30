@@ -15,7 +15,7 @@ int main()
 	if(mode==1)
 	{
 		IN = fopen(IN_FILE, "rb");
-		OUT = fopen("OUT1", "wb");
+		OUT = fopen("OUT1.txt", "wb");
 
 		Encoding solo1;
 		solo1.encode();

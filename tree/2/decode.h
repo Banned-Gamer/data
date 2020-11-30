@@ -7,7 +7,7 @@ class Decoding
 {
 private:
 	string table[365];
-	long long a_long=0;
+	long long a_long;
 	node* root;
 public:
 	void input_table()
@@ -42,6 +42,7 @@ public:
 				huff_tree2(root, i, table[i]);
 			}
 		}
+		return;
 	}
 	void huff_tree2(node* now,unsigned char var,string s_table)
 	{
@@ -90,10 +91,8 @@ public:
 		node* tree = root;
 		string str;
 		long long stand = 8;
-		while(a_long>0)
+		while(fread(&now, sizeof(now), 1, IN))
 		{
-			tree = root;
-			fread(&now, sizeof(now), 1, IN);
 			str = two_string(now,8);
 			
 			for (int i = 0; i < stand; i++)
@@ -109,10 +108,12 @@ public:
 				if(tree->is_child==1)
 				{
 					fwrite(&tree->var, sizeof(unsigned char), 1, OUT);
+					tree = root;
 					break;
 				}
 			}
 			a_long -= 8;
+			if(a_long<=0) break;
 		}
 	}
 	void decode()
@@ -124,9 +125,4 @@ public:
 	}
 };
 
-
-
-
 #endif
-
-

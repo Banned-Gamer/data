@@ -2,13 +2,13 @@
 #define ENCODE_h
 
 #include "Global.h"
-
 class Encoding
 {
 private:
 	node* root;
 	long long all_long;
 	map<char, int>often;
+	int llsize;
 	string table[365];
 	string en_string;
 	priority_queue<node*, vector<node*>, cmp>huff;
@@ -33,6 +33,7 @@ public:
 	{
 		fseek(IN, 0, SEEK_END);
 		int l_size = ftell(IN);
+		llsize=l_size;
 		rewind(IN);
 
 		unsigned char* buffer;
@@ -101,7 +102,7 @@ public:
 
 	void out_table()
 	{
-		int var_long;
+		int var_long=0;
 		char a;
 		for (int i = 0; i < 256; i++)
 		{
@@ -166,11 +167,8 @@ public:
 		huffman1();
 		out_table();
 		
-		fwrite(&all_long, sizeof(all_long), 1, OUT);
 		
-		rewind(IN);
-		fseek(IN, 0, SEEK_END);
-		int l_size = ftell(IN);
+		int l_size = llsize;
 		rewind(IN);
 		unsigned char* buffer;
 		buffer = (unsigned char*)malloc(128);

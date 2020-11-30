@@ -3,7 +3,7 @@
 
 #include "Global.h"
 
-class Decode
+class Decoding
 {
 private:
 	string table[365];

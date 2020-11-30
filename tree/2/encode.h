@@ -170,11 +170,8 @@ public:
 		
 		rewind(IN);
 		fseek(IN, 0, SEEK_END);
-		//�����ļ��Ĵ�С����λ��bytes��
 		int l_size = ftell(IN);
-		//����������ƻ��ļ��Ŀ�ͷ
 		rewind(IN);
-		//���ļ������ݶ�ȡ��buffer��
 		unsigned char* buffer;
 		buffer = (unsigned char*)malloc(128);
 		while (l_size >= 128)

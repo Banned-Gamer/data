@@ -20,7 +20,7 @@ class node
 public:
 	node* left, * right;
 	bool is_child;
-	char var;
+	unsigned char var;
 	long long fre;
 	
 	node()
@@ -31,7 +31,7 @@ public:
 		var = 0;
 		fre = 0;
 	}
-	node(int a, char b, int c)
+	node(int a, unsigned char b, int c)
 	{
 		left = NULL;
 		right = NULL;

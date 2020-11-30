@@ -12,9 +12,8 @@ int main()
 	cout << "Place input the name of file:"<<endl;
 	cin >> IN_file;
 	
-	switch (mode)
+	if(mode==1)
 	{
-	case 1:
 		IN_FILE = (char*)IN_file.data();
 		IN_file += ".zip";
 		OUT_FILE = (char*)IN_file.data();
@@ -22,12 +21,12 @@ int main()
 		OUT = fopen(OUT_FILE, "wb");
 		Encoding solo1;
 		solo1.encode();
-		break;
-	case 2:
-		break;
-	default:
-		cout << "Input error, the program is stop";
-		break;
+		return 0;
 	}
+	if (mode == 2) 
+	{
+		return 0;
+	}
+	cout << "Input error, the program is stop";
 	return 0;
 }

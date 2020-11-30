@@ -3,14 +3,10 @@
 
 #include "Global.h"
 
-#define N 114514
-
-
 class Encoding
 {
 private:
 	node* root;
-	int n;
 	long long all_long;
 	map<char, int>often;
 	string table[365];
@@ -55,9 +51,10 @@ public:
 
 	void pre_huff()
 	{
-		for(auto i=often.begin();i!=often.end();i++)
+		map<char, int>::iterator iter;
+		for (iter = often.begin(); iter != often.end(); iter++)
 		{
-			pair <const char, int> temp = *i;
+			pair <const char, int> temp = *iter;
 			node* now = new node(1, temp.first, temp.second);
 			huff.push(now);
 		}

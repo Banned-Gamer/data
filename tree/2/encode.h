@@ -32,11 +32,9 @@ public:
 	void input()
 	{
 		fseek(IN, 0, SEEK_END);
-		//·µ»ØÎÄ¼þµÄ´óÐ¡£¨µ¥Î»ÊÇbytes£©
 		int l_size = ftell(IN);
-		//½«¹â±êÖØÐÂÒÆ»ØÎÄ¼þµÄ¿ªÍ·
 		rewind(IN);
-		//½«ÎÄ¼þµÄÄÚÈÝ¶ÁÈ¡µ½bufferÖÐ
+
 		unsigned char* buffer;
 		buffer = (unsigned char*)malloc(128);
 		while (l_size >= 128)
@@ -167,15 +165,16 @@ public:
 		pre_huff();
 		huffman1();
 		out_table();
+		
 		fwrite(&all_long, sizeof(all_long), 1, OUT);
 		
 		rewind(IN);
 		fseek(IN, 0, SEEK_END);
-		//·µ»ØÎÄ¼þµÄ´óÐ¡£¨µ¥Î»ÊÇbytes£©
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½bytesï¿½ï¿½
 		int l_size = ftell(IN);
-		//½«¹â±êÖØÐÂÒÆ»ØÎÄ¼þµÄ¿ªÍ·
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½Ä¼ï¿½ï¿½Ä¿ï¿½Í·
 		rewind(IN);
-		//½«ÎÄ¼þµÄÄÚÈÝ¶ÁÈ¡µ½bufferÖÐ
+		//ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¶ï¿½È¡ï¿½ï¿½bufferï¿½ï¿½
 		unsigned char* buffer;
 		buffer = (unsigned char*)malloc(128);
 		while (l_size >= 128)

@@ -15,7 +15,7 @@ int main()
 	if(mode==1)
 	{
 		IN_FILE = (char*)IN_file.data();
-		IN_file += ".zip";
+		IN_file += ".ban";
 		OUT_FILE = (char*)IN_file.data();
 		IN = fopen(IN_FILE, "rb");
 		OUT = fopen(OUT_FILE, "wb");

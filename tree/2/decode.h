@@ -7,7 +7,7 @@ class Decoding
 {
 private:
 	string table[365];
-	long long a_long;
+	long long a_long=0;
 	node* root;
 public:
 	void input_table()
@@ -22,7 +22,7 @@ public:
 			string b_table;
 			char c_temp;
 
-			for(int i=0;i<temp.size;i++)
+			for(int j=0;j<temp.size;j++)
 			{
 				fread(&c_temp, 1, 1, IN);
 				b_table += c_temp;

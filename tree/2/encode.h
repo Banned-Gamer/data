@@ -17,7 +17,7 @@ public:
 	{
 		for (int i = 0; i < x; i++)
 		{
-			if (often.find(str[i])!=often.end())
+			if (often.find(str[i]) != often.end())
 			{
 				often[str[i]]++;
 			}
@@ -33,7 +33,7 @@ public:
 	{
 		fseek(IN, 0, SEEK_END);
 		int l_size = ftell(IN);
-		llsize=l_size;
+		llsize = l_size;
 		rewind(IN);
 
 		unsigned char* buffer;
@@ -82,7 +82,7 @@ public:
 	
 	void huffman2(node* now,string str)
 	{
-		if(now->is_child)
+		if (now->is_child)
 		{
 			table[now->var] = str;
 			all_long += str.size() * now->fre;
@@ -114,7 +114,7 @@ public:
 
 		fwrite(&var_long, sizeof(int), 1, OUT);
 
-		for(int i=0;i<256;i++)
+		for (int i = 0; i < 256; i++)
 		{
 			if(!table[i].empty())
 			{
@@ -123,7 +123,7 @@ public:
 				temp.size = table[i].size();
 				fwrite(&temp, sizeof(temp), 1, OUT);
 
-				for(int j=0;j<table[i].length();j++)
+				for (int j = 0; j < table[i].length(); j++)
 				{
 					a = table[i][j];
 					fwrite(&a, sizeof(a), 1, OUT);
@@ -152,7 +152,7 @@ public:
 		for(int i=0;i<s_long;i++)
 		{
 			en_string += table[page[i]];
-			if(en_string.size()>7)
+			if (en_string.size() > 7)
 			{
 				temp = string_two(en_string, 8);
 				fwrite(&temp, sizeof(temp),1,OUT);
@@ -166,7 +166,6 @@ public:
 		pre_huff();
 		huffman1();
 		out_table();
-		
 		
 		int l_size = llsize;
 		rewind(IN);

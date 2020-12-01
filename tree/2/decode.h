@@ -52,7 +52,7 @@ public:
 			now->var = var;
 			return;
 		}
-		if(s_table[0]=='0')
+		if (s_table[0] == '0')
 		{
 			if (now->left == NULL)
 			{
@@ -73,7 +73,7 @@ public:
 	string  two_string(unsigned char c,int s_long)
 	{
 		string str;
-		for(int i=0;i<=s_long;i++)
+		for (int i = 0; i <= s_long; i++)
 		{
 			if (c % 2 == 0)
 			{
@@ -105,7 +105,7 @@ public:
 				{
 					tree = tree->right;
 				}
-				if(tree->is_child==1)
+				if (tree->is_child == 1)
 				{
 					fwrite(&tree->var, sizeof(unsigned char), 1, OUT);
 					tree = root;
@@ -113,7 +113,7 @@ public:
 				}
 			}
 			a_long -= 8;
-			if(a_long<=0) break;
+			if (a_long <= 0) break;
 		}
 	}
 	void decode()

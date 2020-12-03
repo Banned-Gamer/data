@@ -22,13 +22,13 @@ void pre_tree(){
     return;
 }
 
-char node_tree(node now)
+void node_tree(node now)
 {
     if (a_tree[x] == '*') return;
 	
     node next;
 
-	/*********ÏÈÉú³É×ó×ÓÊ÷**********/
+	/*********ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**********/
     next = new tree;
     next->left = NULL;
     next->right = NULL;
@@ -36,7 +36,7 @@ char node_tree(node now)
     now->left = next;
     node_tree(next);
 
-	/*********ºóÉú³ÉÓÒ×ÓÊ÷**********/
+	/*********ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**********/
     next = new tree;
     next->left = NULL;
     next->right = NULL;
@@ -78,5 +78,5 @@ void print(node now)
 int main(){
     add_tree();
     print(head);
-    return;
+    return 0;
 }

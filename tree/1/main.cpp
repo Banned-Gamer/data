@@ -1,82 +1,93 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
 using namespace std;
 
 #define N 114514
 
-struct tree{
-    char data;
-    tree *left,*right;
-};
-typedef tree* node;
-
-node head;
-char a_tree[N];
-int x,long_tree;
-void pre_tree(){
-    node list;
-	list = new tree;
-    list->left = NULL;
-    list->right = NULL;
-    head = list;
-    return;
-}
-
-void node_tree(node now)
+struct tree
 {
-    if (a_tree[x] == '*') return;
-	
-    node next;
+	char data;
+	int is_brother;
+	tree* left, * right;
+};
 
-	/*********������������**********/
-    next = new tree;
-    next->left = NULL;
-    next->right = NULL;
-    next->data = a_tree[x++];
-    now->left = next;
-    node_tree(next);
+tree* head;
+int tree_long;
+char tree_char[N];
+int x;
 
-	/*********������������**********/
-    next = new tree;
-    next->left = NULL;
-    next->right = NULL;
-    if (a_tree[x] != '*') next->data = a_tree[x++];
-    else return;
-    now->right = next;
-    node_tree(next);
-	
+void pre_tree()
+{
+	tree* node = new tree;
+	node->data = tree_char[0];
+	node->is_brother = 0;
+	node->left = NULL;
+	node->right = NULL;
+	head = node;
 	return;
 }
 
-void add_tree()
+void add_tree(tree* now)
 {
-    cin >> a_tree;
-    long_tree = strlen(a_tree);
-    pre_tree();
-    node_tree(head);
-    return;
+	if (tree_char[x] == '*') return;
+	now->left = new tree;
+	now->left->data = tree_char[x++];
+	now->left->left = NULL;
+	now->left->right = NULL;
+	if (tree_char[x] == '*') now->left->is_brother = 0;
+	else now->left->is_brother = 1;
+	add_tree(now->left);
+
+	if (tree_char[x] == '*') return;
+	now->right = new tree;
+	now->right->data = tree_char[x++];
+	now->right->left = NULL;
+	now->right->right = NULL;
+	if (tree_char[x - 1] == '*')now->right->is_brother = 0;
+	else now->right->is_brother = 2;
+	add_tree(now->right);
+
+	return;
 }
 
-void print(node now)
+void print(tree* now)
 {
-    cout << now->data;
-
-    int flag1 = (now->left == NULL);
-    int flag2 = (now->right == NULL);
-    if (flag1 && flag2)
-    {
-        cout << ")";
-        return;
-    }
-    cout << ",(";
-    if (!flag1) print(now->left);
-    if ((!flag1) && (!flag2)) cout << ",";
-    if (!flag2) print(now->right);
-    return;
+	int flag1 = 0, flag2 = 0;
+	if (now->left == NULL) flag1 = 1;
+	if (now->right == NULL) flag2 = 1;
+	
+	cout << ' ' << now->data;
+	if ((!flag1) || (!flag2))
+	{
+		cout << ",(";
+	}
+	if(!flag1)
+	{
+		print(now->left);
+	}
+	if(!flag2)
+	{
+		print(now->right);
+	}
+	if (now->is_brother == 0)
+	{
+		cout << ").";
+	}
+	if (now->is_brother == 1)
+	{
+		cout << ',';
+	}
+	if(now->is_brother==2)
+	{
+		cout << ").";
+	}
+	return;
 }
-
-int main(){
-    add_tree();
-    print(head);
-    return 0;
+int main()
+{
+	cin >> tree_char;
+	x = 1;
+	pre_tree();
+	add_tree(head);
+	print(head);
+	return 0;
 }

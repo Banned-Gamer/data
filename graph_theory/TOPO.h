@@ -15,12 +15,12 @@ private:
 	char char_node[1010];
 	
 public:
-	void add_edge(node u,node v,int dis)
+	void add_edge(int u,int v,int dis)
 	{
-		v.in_num++;
-		edge[++num_edge].next = u.head;
-		u.head = num_edge;
-		edge[num_edge].to_name = v.name;
+		Node[v].in_num++;
+		edge[++num_edge].next = Node[u].head;
+		Node[u].head = num_edge;
+		edge[num_edge].to_name = Node[v].name;
 		edge[num_edge].dis = dis;
 		return;
 	}
@@ -45,12 +45,12 @@ public:
 			to=edge[now].to_code;
 			dis=edge[now].dis;
 			cout << x << " to " << to << " dis is "<< dis<< endl; 
-			if(Node[to].dis < Node[x].dis + dis)
+			if (Node[to].dis < Node[x].dis + dis)
 			{
 				Node[to].dis = Node[x].dis + dis;
 				max_dis = max_dis > Node[to].dis ? max_dis : Node[to].dis;
 				Node[to].in_num--;
-				if(!Node[to].in_num && !Node[to].mark){
+				if (!Node[to].in_num && !Node[to].mark) {
 					Topo_sort(to);
 				}
 			}
@@ -79,11 +79,11 @@ public:
 				if (char_node[j] == u) u_code = j;
 				if (char_node[j] == v) v_code = j;
 			}
-			add_edge(Node[u_code], Node[v_code], w);
+			add_edge(u_code, v_code, w);
 		}
 		max_dis = 0;
 		
-		for(int i=1;i<=num_node;i++)
+		for (int i = 1; i <= num_node; i++)
 		{
 			if (!Node[i].in_num && !Node[i].mark)
 			{

@@ -8,6 +8,7 @@ class topo
 private:
 	node Node[1010];
 	graph edge[N];
+	int all_edge;
 	int num_edge;
 	int num_node;
 	int max_dis;
@@ -35,22 +36,30 @@ public:
 	}
 	void Topo_sort(int x)
 	{
-		int temp = Node[x].head;
-		while(temp)
+		int now = Node[x].head;
+		int to;
+		int dis;
+		Node[x].mark = 1;
+		while(now)
 		{
-			if(Node[edge[temp].to_code].dis<Node[x].dis+edge[temp].dis)
+			to=edge[now].to_code;
+			dis=edge[now].dis;
+			cout << x << " to " << to << " dis is "<< dis<< endl; 
+			if(Node[to].dis < Node[x].dis + dis)
 			{
-				Node[edge[temp].to_code].dis = Node[x].dis + edge[temp].dis;
-				max_dis = max_dis > Node[edge[temp].to_code].dis ? max_dis : Node[edge[temp].to_code].dis;
-				Node[edge[temp].to_code].in_num--;
+				Node[to].dis = Node[x].dis + dis;
+				max_dis = max_dis > Node[to].dis ? max_dis : Node[to].dis;
+				Node[to].in_num--;
+				if(!Node[to].in_num && !Node[to].mark){
+					Topo_sort(to);
+				}
 			}
 		}
-		Node[x].mark = 1;
 		return;
 	}
-	int Topo()//剩余有多少点
+	int Topo()
 	{
-		cin >> num_node >> num_edge;
+		cin >> num_node >> all_edge;
 		for (int i = 1; i <= num_node; i++)
 		{
 			cin >> char_node[i];
@@ -60,9 +69,9 @@ public:
 		char u, v;
 		int w;
 		int u_code, v_code;
-		for (int i = 1; i <= num_edge; i++)
+		for (int i = 1; i <= all_edge; i++)
 		{
-			cin >> u >> v;
+			cin >> u >> v >> w;
 			u_code = 0; v_code = 0;
 			for(int j=1;j<=num_node;j++)
 			{
@@ -72,13 +81,13 @@ public:
 			}
 			add_edge(Node[u_code], Node[v_code], w);
 		}
-
 		max_dis = 0;
 		
 		for(int i=1;i<=num_node;i++)
 		{
 			if (!Node[i].in_num && !Node[i].mark)
 			{
+				cout<<'1'<<endl;
 				max_dis = max_dis > Node[i].dis ? max_dis : Node[i].dis;
 				Topo_sort(i);
 			}

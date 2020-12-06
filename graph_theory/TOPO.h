@@ -23,7 +23,6 @@ public:
 		edge[num_edge].to_code = v;
 		edge[num_edge].to_name = Node[v].name;
 		edge[num_edge].dis = dis;
-		cout<<Node[u].name<<' '<<Node[v].name<<' '<<num_edge<<endl;
 		return;
 	}
 	void pre_node(char cc,int i)
@@ -44,9 +43,8 @@ public:
 		Node[x].mark = 1;
 		while(now)
 		{
-			to=edge[now].to_code;
-			dis=edge[now].dis;
-			cout<<to<<' '<<now<<' '<<dis<<endl;
+			to = edge[now].to_code;
+			dis = edge[now].dis;
 			if (Node[to].dis < Node[x].dis + dis)
 			{
 				Node[to].dis = Node[x].dis + dis;
@@ -85,7 +83,6 @@ public:
 			add_edge(u_code, v_code, w);
 		}
 		max_dis = 0;
-		cout<<endl;
 		for (int i = 1; i <= num_node; i++)
 		{
 			if (!Node[i].in_num && !Node[i].mark)

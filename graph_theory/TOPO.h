@@ -20,8 +20,10 @@ public:
 		Node[v].in_num++;
 		edge[++num_edge].next = Node[u].head;
 		Node[u].head = num_edge;
+		edge[num_edge].to_code = v;
 		edge[num_edge].to_name = Node[v].name;
 		edge[num_edge].dis = dis;
+		cout<<Node[u].name<<' '<<Node[v].name<<' '<<num_edge<<endl;
 		return;
 	}
 	void pre_node(char cc,int i)
@@ -44,7 +46,7 @@ public:
 		{
 			to=edge[now].to_code;
 			dis=edge[now].dis;
-			cout << x << " to " << to << " dis is "<< dis<< endl; 
+			cout<<to<<' '<<now<<' '<<dis<<endl;
 			if (Node[to].dis < Node[x].dis + dis)
 			{
 				Node[to].dis = Node[x].dis + dis;
@@ -54,6 +56,7 @@ public:
 					Topo_sort(to);
 				}
 			}
+			now=edge[now].next;
 		}
 		return;
 	}
@@ -82,12 +85,11 @@ public:
 			add_edge(u_code, v_code, w);
 		}
 		max_dis = 0;
-		
+		cout<<endl;
 		for (int i = 1; i <= num_node; i++)
 		{
 			if (!Node[i].in_num && !Node[i].mark)
 			{
-				cout<<'1'<<endl;
 				max_dis = max_dis > Node[i].dis ? max_dis : Node[i].dis;
 				Topo_sort(i);
 			}

@@ -12,6 +12,7 @@ private:
 	int num_edge;
 	int num_node;
 	int max_dis;
+	int max_id;
 	char char_node[1010];
 	
 public:
@@ -48,7 +49,12 @@ public:
 			if (Node[to].dis < Node[x].dis + dis)
 			{
 				Node[to].dis = Node[x].dis + dis;
-				max_dis = max_dis > Node[to].dis ? max_dis : Node[to].dis;
+				Node[to].father = x;
+				if(max_dis<Node[to].dis)
+				{
+					max_dis = max_dis > Node[to].dis ? max_dis : Node[to].dis;
+					max_id = to;
+				}
 				Node[to].in_num--;
 				if (!Node[to].in_num && !Node[to].mark) {
 					Topo_sort(to);
@@ -58,12 +64,12 @@ public:
 		}
 		return;
 	}
-	int Topo()
+	void Topo()
 	{
 		cin >> num_node >> all_edge;
 		for (int i = 1; i <= num_node; i++)
 		{
-			cin >> char_node[i];
+			scanf(" %c", &char_node[i]);
 			pre_node(char_node[i], i);
 		}
 
@@ -91,7 +97,14 @@ public:
 				Topo_sort(i);
 			}
 		}
-		return max_dis;
+
+		int now = max_id;
+		while (Node[now].father != 0)
+		{
+			now = Node[now].father;
+		}
+		printf("The farthest distant is from %c to %c, it's length is %d.", Node[now].name, Node[max_id].name, max_dis);
+		return ;
 	}
 };
 

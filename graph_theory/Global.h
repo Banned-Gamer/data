@@ -30,5 +30,6 @@ public:
 	int dis;
 	int head;
 	int mark;
+	int father;
 };
 #endif

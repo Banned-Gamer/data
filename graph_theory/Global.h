@@ -12,24 +12,22 @@ using namespace std;
 #define N 114514
 
 
-class graph
+struct graph
 {
-public:
-	int dis;
-	int to_code;
-	char to_name;
-	int next;
+	int dis;//距离
+	int to_code;//终点编号
+	char to_name;//终点的名字
+	int next;//下一条边
 };
 
-class node
+struct node
 {
-public:
-	char name;
-	int code;
-	int in_num;
-	int dis;
-	int head;
-	int mark;
-	int father;
+	char name;//本点的名字
+	int code;//编号，便于进行遍历
+	int in_num;//入度，用于拓扑排序
+	int dis;//最远的点到此点的距离
+	int head;//首边编号
+	int mark;//是否进栈（删除节点）
+	int father;//最远的点的编号
 };
 #endif

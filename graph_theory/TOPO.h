@@ -115,10 +115,11 @@ public:
 		}
 
 		int now = max_id;
+		path.push(now);
 		while(Node[now].father)//用栈进行倒序遍历
 		{
-			path.push(now);
 			now = Node[now].father;
+			path.push(now);
 		}
 		cout << "The farthest way is:" << endl;
 		while(!path.empty())

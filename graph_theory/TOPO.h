@@ -91,6 +91,8 @@ public:
 		char u, v;
 		int w;
 		int u_code, v_code;//Ñ°ÕÒuºÍvµÄ±àºÅ
+
+		cout << "Input the origin, the end, length of edge:" << endl;
 		for (int i = 1; i <= all_edge; i++)//Â¼Èë±ß
 		{
 			cin >> u >> v >> w;

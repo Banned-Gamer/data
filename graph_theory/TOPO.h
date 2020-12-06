@@ -14,6 +14,7 @@ private:
 	int max_dis;//最远的距离
 	int max_id;//最远的终点
 	char char_node[1010];
+	stack <int> path;
 	
 public:
 	void add_edge(int u,int v,int dis)
@@ -59,7 +60,7 @@ public:
 			if (Node[to].dis < Node[x].dis + dis)//如果x的距离+id为now的边的长度大于到to的最大长度，则更新为此距离
 			{
 				Node[to].dis = Node[x].dis + dis;
-				Node[to].father = Node[x].father;//采用并查集的想法来继承起点
+				Node[to].father = x; //记录父节点，便于输出路径
 				if(max_dis<Node[to].dis)
 				{
 					max_dis = max_dis > Node[to].dis ? max_dis : Node[to].dis;//求最远距离，同时存最远距离的终点
@@ -113,8 +114,24 @@ public:
 			}
 		}
 
-		int now = Node[max_id].father;//用并查集找起点
-		printf("The farthest distant is from %c to %c, it's length is %d.", Node[now].name, Node[max_id].name, max_dis);
+		int now = max_id;
+		while(Node[now].father)//用栈进行倒序遍历
+		{
+			path.push(now);
+			now = Node[now].father;
+		}
+		cout << "The farthest way is:" << endl;
+		while(!path.empty())
+		{
+			cout << path.top();
+			path.pop();
+			if (!path.empty())
+			{
+				cout << " > ";
+			}
+			else cout << '.' << endl;
+		}
+		cout << "The length is " << max_dis;
 		return ;
 	}
 };

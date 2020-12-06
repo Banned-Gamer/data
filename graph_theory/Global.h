@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include <stack>
 using namespace std;
 
 #define N 114514

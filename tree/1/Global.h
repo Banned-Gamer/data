@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <cstring>
 
 using namespace std;
 
@@ -14,13 +15,13 @@ class tree
 {
 public:
 	char data;
-	int is_brother;
+	int num_child;
 	tree* left, * right;
 
-	tree(char char_data, int x)
+	tree(char char_data)
 	{
 		data = char_data;
-		is_brother = x;
+		num_child = 0;
 		left = NULL;
 		right = NULL;
 		return;
